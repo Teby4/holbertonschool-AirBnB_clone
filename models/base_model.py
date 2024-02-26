@@ -22,8 +22,8 @@ class BaseModel():
     def to_dict(self):
         r = self.__dict__
         r["__class__"] = type(self).__name__
-        r["created_at"].isoformat()
-        r["updated_at"].isoformat()
+        r["created_at"] = r["created_at"].isoformat()
+        r["updated_at"] = r["updated_at"].isoformat()
         return r
 
     def save(self):
