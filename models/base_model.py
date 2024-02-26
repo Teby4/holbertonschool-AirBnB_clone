@@ -17,11 +17,11 @@ class BaseModel():
         self.updated_at = datetime.now()
 
     def __str__(self):
-        return "[{}] ({}) <{}>".format(type(self), self.id, self.__dict__)
+        return "[{}] ({}) <{}>".format(type(self).__name__, self.id, self.__dict__)
 
     def to_dict(self):
         r = self.__dict__
-        r["__class__"] = type(self)
+        r["__class__"] = type(self).__name__
         return r
 
     def save(self):
