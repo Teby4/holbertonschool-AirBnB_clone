@@ -23,7 +23,7 @@ class FileStorage():
     
     def save(self):
         try:
-            with open(FileStorage.__file_path, "r") as f:
+            with open(FileStorage.__file_path, "w") as f:
                 f.write(json.dumps(FileStorage.__objects))
         except:
             pass
