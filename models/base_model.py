@@ -6,7 +6,8 @@ Module for handling and serialization of instances
 
 from datetime import datetime
 import uuid
-
+from models.engine.file_storage import FileStorage
+from models import storage
 
 class BaseModel():
     """ Base class for all instances """
@@ -23,6 +24,7 @@ class BaseModel():
         else:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
 
     def __str__(self):
@@ -37,3 +39,4 @@ class BaseModel():
 
     def save(self):
         self.updated_at = datetime.now()
+        storage.save()
