@@ -31,6 +31,6 @@ class FileStorage():
     def reload(self):
         try:
             with open(FileStorage.__file_path, "r") as f:
-                FileStorage.__objects = json.loads(f.read())
+                FileStorage.__objects = json.load(f)
         except:
             pass
