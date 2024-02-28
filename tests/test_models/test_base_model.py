@@ -12,6 +12,9 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(model.created_at, datetime)
         self.assertIsInstance(model.updated_at, datetime)
 
+        dic = model.to_dict()
+        self.assertEqual(BaseModel(dic), model)
+
     def test_str(self):
         model = BaseModel()
         out = "[{}] ({}) <{}>".format(type(model).__name__, model.id, model.__dict__)
