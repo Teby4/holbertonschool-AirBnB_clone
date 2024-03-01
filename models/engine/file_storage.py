@@ -22,15 +22,16 @@ class FileStorage():
         FileStorage.__objects[type(obj).__name__ + obj.id] = obj
     
     def save(self):
-        try:
-            with open(FileStorage.__file_path, "w") as f:
-                f.write(json.dumps(FileStorage.__objects))
-        except:
-            pass
+        t = {(FilStorage.__objects[k], v.to_dict()) for k, v in
+             FileStorage.__objects.items()}
+        with open(FileStorage.__file_path, "w") as f:
+            f.write(json.dumps(t))
     
     def reload(self):
         try:
             with open(FileStorage.__file_path, "r") as f:
-                FileStorage.__objects = json.load(f)
+                FileStorage.__objects = json.loads(f.read())
+                for key, value in FileStorage.__objects.items():
+                    FileStorage.__objects[key] = 
         except:
             pass

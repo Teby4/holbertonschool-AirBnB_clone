@@ -18,7 +18,8 @@ class BaseModel():
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
-                        setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                        setattr(self, key, datetime.strptime(value,
+                                "%Y-%m-%dT%H:%M:%S.%f"))
                     else:
                         setattr(self, key, value)
         else:
@@ -28,13 +29,17 @@ class BaseModel():
 
 
     def __str__(self):
-        return "[{}] ({}) <{}>".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(type(self).__name__, self.id,
+                self.__dict__)
 
     def to_dict(self):
-        r = self.__dict__
-        r["__class__"] = type(self).__name__
-        r["created_at"] = r["created_at"].isoformat()
-        r["updated_at"] = r["updated_at"].isoformat()
+        r = {}
+        for key, value in self.__dict__.items():
+            if key == "created_at" or key == "updated_at":
+                r[key] = value.isoformat()
+            else:
+                r[key] = value
+            r["__class__"] = type(self).__name__
         return r
 
     def save(self):
