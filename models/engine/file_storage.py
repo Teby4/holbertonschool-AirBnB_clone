@@ -4,11 +4,10 @@
 Module for handling JSON serialization/deserialization
 """
 
-
-from models.base_model import BaseModel
 from datetime import datetime
 import uuid
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -21,19 +20,24 @@ class FileStorage():
         return FileStorage.__objects
 
     def new(self, obj):
-        FileStorage.__objects[type(obj).__name__ + obj.id] = obj
+        FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj
 
     def save(self):
-        t = {(k, v.to_dict()) for k, v in
-             FileStorage.__objects.items()}
+        t = {}
+        for k, v in FileStorage.__objects.items():
+            t[k] = v.to_dict()
         with open(FileStorage.__file_path, "w") as f:
             f.write(json.dumps(t))
 
     def reload(self):
+        classList = {
+                "BaseModel":BaseModel
+                }
         try:
             with open(FileStorage.__file_path, "r") as f:
                 FileStorage.__objects = json.loads(f.read())
                 for key, value in FileStorage.__objects.items():
-                    FileStorage.__objects[key] = BaseModel(value)
-        except:
+                    cls = classList[value["__class__"]]
+                    FileStorage.__objects[key] = cls(**value)
+        except FileNotFoundError:
             pass
