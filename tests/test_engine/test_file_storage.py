@@ -6,4 +6,16 @@ import unittest
 from datetime import datetime
 
 class Testfilestorage(unittest.TestCase):
-    pass
+    
+
+    def test_all(self):
+        pass
+
+    def test_new(self):
+        pass
+
+    def test_save(self):
+        pass
+
+    def test_reload(self):
+        pass
