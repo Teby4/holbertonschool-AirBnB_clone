@@ -8,6 +8,7 @@ from datetime import datetime
 import uuid
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage():
@@ -31,7 +32,8 @@ class FileStorage():
 
     def reload(self):
         classList = {
-                "BaseModel":BaseModel
+                "BaseModel":BaseModel,
+                "User":User,
                 }
         try:
             with open(FileStorage.__file_path, "r") as f:

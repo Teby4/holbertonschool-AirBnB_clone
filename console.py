@@ -6,6 +6,7 @@ Write a program called console.py that contains the entry point of the command i
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -15,7 +16,8 @@ class HBNBCommand(cmd.Cmd):
 
     def getClass(self, arg):
         classList = {
-            "BaseModel":BaseModel
+            "BaseModel":BaseModel,
+            "User":User
         }
         if arg in classList:
             return classList[arg]
@@ -94,6 +96,7 @@ EOF help quit\n\n"
                 key = "{}.{}".format(args[0], args[1])
                 if key in instanceList:
                     del(instanceList[key])
+                    models.storage.save()
                 else:
                     print("** no instance found **")
 
