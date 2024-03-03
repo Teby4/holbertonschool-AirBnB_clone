@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="hbnb_logo.png" alt="HolbertonBnB logo">
-</p>
+![65f4a1dd9c51265f49d0](https://github.com/Teby4/holbertonschool-AirBnB_clone/assets/135641220/588fe399-9c03-4b32-bed2-ec41a5d1ac18)
 
 ## AirBnB clone - The console
 
