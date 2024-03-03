@@ -25,16 +25,21 @@ After closing the console, all created instances are saved to a file, and restor
 
 ### Console Command Examples
 
-```(hbnb) create BaseModel
+```
+(hbnb) create BaseModel
 b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9
-(hbnb) ```
+(hbnb) 
+```
 Created a BaseModel instance, and printed its unique id
 
-```(hbnb) destroy BaseModel b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9
-(hbnb) ```
+```
+(hbnb) destroy BaseModel b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9
+(hbnb) 
+```
 Destroyed the newly created instance
 
-```(hbnb) update BaseModel b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9 age 27
+```
+(hbnb) update BaseModel b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9 age 27
 (hbnb) show BaseModel b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9
 [BaseModel] (b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9) {'id': 'b38d67bc-7ab6-4f27-a3ce-fc619d13a4d9', 'created_at': datetime.datetime(2024, 3, 3, 7, 38, 39, 322098), 'updated_at': datetime.datetime(2024, 3, 3, 7, 38, 39, 322111), 'age': '27'}
 (hbnb) 
