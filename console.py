@@ -7,6 +7,11 @@ import cmd
 import models
 from models.base_model import BaseModel
 from models.user import User
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.review import Review
+from models.amenity import Amenity
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -16,8 +21,13 @@ class HBNBCommand(cmd.Cmd):
 
     def getClass(self, arg):
         classList = {
-            "BaseModel":BaseModel,
-            "User":User
+                "BaseModel":BaseModel,
+                "User":User,
+                "State":State,
+                "City":City,
+                "Amenity":Amenity,
+                "Place":Place,
+                "Review":Review
         }
         if arg in classList:
             return classList[arg]
@@ -43,6 +53,7 @@ class HBNBCommand(cmd.Cmd):
             "show" : "displays instance of a class (show <class name> <instance id>)",
             "destroy" : "removes an instance of a class (destroy <classname> <instance id>)",
             "all" : "shows instances of all classes or a specific class (all [classname])",
+            "update": "changes attribute of instance (update <classname> <instance id> <attribute> <value>)",
             "" : "\nDocumented commands (type help <topic>)\n\
 ========================================\n\
 EOF help quit\n\n"
