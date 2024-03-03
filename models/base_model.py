@@ -1,12 +1,13 @@
 #!/usr/bin/python3
-
 """
 Module for handling and serialization of instances
 """
 
+
 from datetime import datetime
 import uuid
 import models
+
 
 class BaseModel():
     """ Base class for all instances """
@@ -26,10 +27,9 @@ class BaseModel():
             self.updated_at = datetime.now()
             models.storage.new(self)
 
-
     def __str__(self):
         return "[{}] ({}) {}".format(type(self).__name__, self.id,
-                self.__dict__)
+                                     self.__dict__)
 
     def to_dict(self):
         r = {}

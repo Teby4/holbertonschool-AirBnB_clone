@@ -37,13 +37,13 @@ class FileStorage():
 
     def reload(self):
         classList = {
-                "BaseModel":BaseModel,
-                "User":User,
-                "State":State,
-                "City":City,
-                "Amenity":Amenity,
-                "Place":Place,
-                "Review":Review
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review
                 }
         try:
             with open(FileStorage.__file_path, "r") as f:

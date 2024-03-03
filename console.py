@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Write a program called console.py that contains the entry point of the command interpreter:
+Write a program called console.py
+that contains the entry point of the command interpreter:
 """
 
 import cmd
@@ -13,27 +14,27 @@ from models.state import State
 from models.review import Review
 from models.amenity import Amenity
 
+
 class HBNBCommand(cmd.Cmd):
     """
-    
+    Console handling class
     """
     prompt = '(hbnb) '
 
     def getClass(self, arg):
         classList = {
-                "BaseModel":BaseModel,
-                "User":User,
-                "State":State,
-                "City":City,
-                "Amenity":Amenity,
-                "Place":Place,
-                "Review":Review
+                "BaseModel": BaseModel,
+                "User": User,
+                "State": State,
+                "City": City,
+                "Amenity": Amenity,
+                "Place": Place,
+                "Review": Review
         }
         if arg in classList:
             return classList[arg]
         else:
             return None
-
 
     def emptyline(self):
         pass
@@ -43,23 +44,27 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, arg):
         exit()
-        
+
     def do_help(self, arg):
         help_messages = {
-            "quit" : "Quit command to exit the program",
-            "EOF" : "exit the program",
-            "help" : "displays help message",
-            "create" : "creates a new instance of a class (create <classname>)",
-            "show" : "displays instance of a class (show <class name> <instance id>)",
-            "destroy" : "removes an instance of a class (destroy <classname> <instance id>)",
-            "all" : "shows instances of all classes or a specific class (all [classname])",
-            "update": "changes attribute of instance (update <classname> <instance id> <attribute> <value>)",
-            "" : "\nDocumented commands (type help <topic>)\n\
+            "quit": "Quit command to exit the program",
+            "EOF": "exit the program",
+            "help": "displays help message",
+            "create": "creates a new instance of a class\
+ (create <classname>)",
+            "show": "displays instance of a class (show <class name>\
+ <instance id>)",
+            "destroy": "removes an instance of a class (destroy <classname>\
+ <instance id>)",
+            "all": "shows instances of all classes or a specific class (all\
+ [classname])",
+            "update": "changes attribute of instance (update <classname>\
+ <instance id> <attribute> <value>)",
+            "": "\nDocumented commands (type help <topic>)\n\
 ========================================\n\
 EOF help quit\n\n"
         }
         print(help_messages[arg])
-
 
     def do_create(self, arg):
         if arg == "":
@@ -67,7 +72,7 @@ EOF help quit\n\n"
         else:
             cla = self.getClass(arg)
 
-            if cla == None:
+            if cla is None:
                 print("** class doesn't exist **")
             else:
                 new = cla()
@@ -106,7 +111,7 @@ EOF help quit\n\n"
                 instanceList = models.storage.all()
                 key = "{}.{}".format(args[0], args[1])
                 if key in instanceList:
-                    del(instanceList[key])
+                    del instanceList[key]
                     models.storage.save()
                 else:
                     print("** no instance found **")
@@ -146,6 +151,7 @@ EOF help quit\n\n"
                     print("** value missing **")
                 else:
                     setattr(instanceList[key], args[2], args[3])
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
